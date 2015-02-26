@@ -1,5 +1,7 @@
 package com.example.gambletest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import android.util.Log;
@@ -80,7 +82,7 @@ public class Banker {
 	public static int loseCounter;
 	
 	public static String checkRound;
-
+	public static List<AbstractPlayer> players = new ArrayList<AbstractPlayer>();
 	public Banker() {
 		if (isDebug) {
 			Log.e("gray", "Banker.java:Banker, " + "");
@@ -153,11 +155,11 @@ public class Banker {
 	}
 	
 	public static void deal(){
-		
+		//亂數產生結果
 		dice1 = 1+(int)(generator.nextDouble()*6);
 		dice2 = 1+(int)(generator.nextDouble()*6);
 		dice3 = 1+(int)(generator.nextDouble()*6);
-		
+		//豹子通殺
 		if (dice1 == dice2 && dice2 == dice3) {
 			allSameCounter++;
 			result = ALL_KILL;
@@ -209,7 +211,7 @@ public class Banker {
 			continuousSmallCounter = 1;
 			continuousBigCounterReal = 1;
 			continuousSmallCounterReal = 1;
-			
+			//開大
 		} else if (dice1+dice2+dice3 >= 11) {
 			bigCounter++;
 			result = BIG;
@@ -273,7 +275,7 @@ public class Banker {
 //				Log.e("gray", "Banker.java:deal, round:" + gameCounter);
 //				checkRound += "continuous same big:" + continuousBigCounterReal + ", round:" + gameCounter + "\n";
 //			}
-			
+			//開小
 		} else if (dice1+dice2+dice3 <= 10) {
 			smallCounter++;
 			result = SMALL;
@@ -391,46 +393,48 @@ public class Banker {
 		
 	}
 	
-	public static void pay(){
-		
-		if (isDebug) {
-			Log.e("gray", "Banker.java:pay, TotalCash:" + Player1.getTotalCash());
-		}
-		
-		if ( Player1.isBet && ((result == SMALL && Player1.isBetSmall) || (result == BIG && Player1.isBetBig)) ) {
-			
+	public  static void pay(){
+		for(AbstractPlayer player : players){
 			if (isDebug) {
-				Log.e("gray", "Banker.java:pay, WIN, Player1.betMoney:" + Player1.getBetMoney());
+				Log.e("gray", "Banker.java:pay, TotalCash:" + player.getTotalCash());
 			}
-			MainActivity.logString += "Player WIN\n";
 			
-			winCounter++;
-			Player1.setBetResult(WIN);
-			Player1.setTotalCash(Player1.getTotalCash() + Player1.getBetMoney()*2);
-			MainActivity.logString += "Player totalCash:" + Player1.totalCash + "\n";
-			Player1.resetVars();
-			continuousBigCounter = 0;
-			continuousSmallCounter = 0;
-			
-		} else if (Player1.isBet && ((result == BIG && Player1.isBetSmall) || (result == SMALL && Player1.isBetBig) || result == ALL_KILL) ) {
-			if (isDebug) {
-				Log.e("gray", "Banker.java:pay, " + "LOSE");
+			if ( player.isBet && ((result == SMALL && player.isBetSmall) || (result == BIG && player.isBetBig)) ) {
+				//玩家押對贏錢
+				if (isDebug) {
+					Log.e("gray", "Banker.java:pay, WIN, "+player.playerName+".betMoney:" + player.getBetMoney());
+				}
+				MainActivity.logString += player.playerName+" WIN\n";
+				
+				winCounter++;
+				player.setBetResult(WIN);
+				player.setTotalCash(player.getTotalCash() + player.getBetMoney()*2);
+				MainActivity.logString += player.playerName+" totalCash:" + player.totalCash + "\n";
+				player.resetVars();
+				continuousBigCounter = 0;
+				continuousSmallCounter = 0;
+	
+			} else if (player.isBet && ((result == BIG && player.isBetSmall) || (result == SMALL && player.isBetBig) || result == ALL_KILL) ) {
+				//玩家押錯輸錢
+				if (isDebug) {
+					Log.e("gray", "Banker.java:pay, " + "LOSE");
+				}
+				MainActivity.logString += player.playerName+" LOSE\n";
+				
+	//			loseCounter++;
+				player.setBetResult(LOSE);
+				MainActivity.logString += player.playerName+" totalCash:" + player.totalCash + "\n";
 			}
-			MainActivity.logString += "Player LOSE\n";
-			
-//			loseCounter++;
-			Player1.setBetResult(LOSE);
-			MainActivity.logString += "Player totalCash:" + Player1.totalCash + "\n";
 		}
-		
 		previousResult = result;
 		
 	}
 	
 	public static void statistics(){
-		
-		Log.e("gray", "start cash:" + Player1.totalCash);
-		Log.e("gray", "final cash:" + Player1.totalCash);
+		for(AbstractPlayer player : players){
+			Log.e("gray", player.playerName+" start cash:" + player.totalCash);
+			Log.e("gray", player.playerName+" final cash:" + player.totalCash);
+		}
 		Log.e("gray", "total game:" + gameCounter);
 		Log.e("gray", "allSameCounter:" + allSameCounter + ", op:" + (double)allSameCounter/gameCounter);
 		Log.e("gray", "bigCounter:" + bigCounter + ", op:" + (double)bigCounter/gameCounter);
@@ -455,9 +459,11 @@ public class Banker {
 //		Log.e("gray", "dice3, point 4:" + dice3_4counter + ", op:" + (double)dice3_4counter/gameCounter);
 //		Log.e("gray", "dice3, point 5:" + dice3_5counter + ", op:" + (double)dice3_5counter/gameCounter);
 //		Log.e("gray", "dice3, point 6:" + dice3_6counter + ", op:" + (double)dice3_6counter/gameCounter);
+		for(AbstractPlayer player : players){
+			MainActivity.logString += player.playerName+"start cash:" + player.startCash + "\n";
+			MainActivity.logString += player.playerName+"final cash:" + player.totalCash + "\n";
+		}
 		
-		MainActivity.logString += "start cash:" + Player1.startCash + "\n";
-		MainActivity.logString += "final cash:" + Player1.totalCash + "\n";
 		MainActivity.logString += "total game:" + gameCounter + "\n";
 		MainActivity.logString += "win:" + winCounter + "\n";
 		MainActivity.logString += "lose:" + loseCounter + "\n";

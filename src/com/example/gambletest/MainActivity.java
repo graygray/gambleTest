@@ -303,8 +303,13 @@ public class MainActivity extends Activity {
 	    			public void run() 
 	    			{
 	    				try {
+	    					AbstractPlayer player1 = new Player1("Player1");
+	    					AbstractPlayer player2 = new Player2("Player2");
 	    					Banker.init();
-	    					Player1.init();
+	    					Banker.players.add(player1);
+	    					Banker.players.add(player2);
+	    					player1.init();
+	    					player2.init();
 	        				list.clear();
 	    					for (int i = 0; i < maxRound; i++) {
 	    						
@@ -315,15 +320,17 @@ public class MainActivity extends Activity {
 	    							if (isDebug) {
 	    								Log.e("gray", "Banker.java:deal, ======== gameCounter:" + Banker.gameCounter + " =========");
 	    							}
-	    							logString += "========= Game:" + Banker.gameCounter + " =========\n";
-	    							Player1.bet();
-	    							if (Player1.isGameOver) {
+	    							logString += "========= Game:" + Banker.gameCounter + " =========\n";	    							
+	    							player1.bet();
+	    							player2.bet();
+	    							if (player1.isGameOver && player2.isGameOver) {
 	    								list.add(logString);
 	    								break;
 	    							}
 	    							Banker.deal();
 	    							Banker.pay();
-	    							Player1.roundFinish();
+	    							player1.roundFinish();
+	    							player2.roundFinish();
 	    							list.add(logString);
 	    							
 	    							
