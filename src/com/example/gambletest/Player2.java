@@ -27,7 +27,7 @@ public class Player2 extends AbstractPlayer{
 		} else {
 			betMoney = 50;
 		}
-		int chooseNum = (int)Math.random()*18+1;
+		int chooseNum = (int)(Math.random()*18+1);
 		String msg = null;
 		if (chooseNum >= 11){
 			isBetBig = true;
