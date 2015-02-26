@@ -5,7 +5,7 @@ import java.util.Random;
 import android.util.Log;
 
 public class Banker {
-
+//test
 //	final static boolean isDebug = true;
 	final static boolean isDebug = false;
 	
