@@ -152,6 +152,7 @@ public class Banker {
 		checkRound = "";
 		
 		generator = new Random(System.currentTimeMillis());
+		players.clear();
 	}
 	
 	public static void deal(){
