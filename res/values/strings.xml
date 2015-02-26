@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GambleTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="s_simulate">Simulate</string>
+
+    <string name="maxBetMoney_prompt">Max Bet money</string>
+    <string-array name="maxBetMoney_arrays">
+        <item>maxBet:200</item>
+        <item>maxBet:400</item>
+        <item>maxBet:800</item>
+        <item>maxBet:1600</item>
+        <item>maxBet:3200</item>
+        <item>maxBet:6400</item>
+    </string-array>
+    
+    <string name="maxRound_prompt">Max Round</string>
+    <string-array name="maxRound_arrays">
+        <item>maxRound:100</item>
+        <item>maxRound:500</item>
+        <item>maxRound:1000</item>
+        <item>maxRound:5000</item>
+        <item>maxRound:10000</item>
+        <item>maxRound:50000</item>
+        <item>maxRound:100000</item>
+    </string-array>
+    
+    <string name="contSame_prompt">Continue same to Bet</string>
+    <string-array name="contSame_arrays">
+        <item>contSameToBet:2</item>
+        <item>contSameToBet:3</item>
+        <item>contSameToBet:4</item>
+        <item>contSameToBet:5</item>
+        <item>contSameToBet:6</item>
+        <item>contSameToBet:7</item>
+        <item>contSameToBet:8</item>
+    </string-array>
+    
+</resources>
