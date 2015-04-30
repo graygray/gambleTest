@@ -1,0 +1,56 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+   <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_playerIndex_titles"
+        android:entryValues="@array/pref_playerIndex_values"
+        android:key="pref_playerIndex"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_playerIndex_messages" />
+   
+   <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_simulationTimes_titles"
+        android:entryValues="@array/pref_simulationTimes_values"
+        android:key="pref_simulationTimes"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_simulationTimes_messages" />
+
+   <ListPreference
+        android:defaultValue="100"
+        android:entries="@array/pref_maxRound_titles"
+        android:entryValues="@array/pref_maxRound_values"
+        android:key="pref_maxRound"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_maxRound_messages" />
+   
+   <ListPreference
+        android:defaultValue="400"
+        android:entries="@array/pref_maxBet_titles"
+        android:entryValues="@array/pref_maxBet_values"
+        android:key="pref_maxBet"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_maxBet_messages" />
+   
+	<ListPreference
+        android:defaultValue="50"
+        android:entries="@array/pref_minBet_titles"
+        android:entryValues="@array/pref_minBet_values"
+        android:key="pref_minBet"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_minBet_messages" />
+
+	<ListPreference
+        android:defaultValue="10000"
+        android:entries="@array/pref_playerStartCash_titles"
+        android:entryValues="@array/pref_playerStartCash_values"
+        android:key="pref_playerStartCash"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_playerStartCash_messages" />
+</PreferenceScreen>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GambleTest</string>
+    <string name="app_name">GTest</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_mail_log">Mail Log</string>
 
     <string name="s_simulate">Simulate</string>
 

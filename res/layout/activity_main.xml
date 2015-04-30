@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.gambletest.MainActivity" >
 
-   <Spinner
+  <!--  <Spinner
        android:id="@+id/spinner_max_round"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
        android:layout_below="@+id/spinner_max_bet"
        android:entries="@array/contSame_arrays"
        android:prompt="@string/contSame_prompt" />
-   
+    -->
    <Button
        android:id="@+id/button_simulate"
        android:layout_width="wrap_content"
@@ -61,6 +61,4 @@
         android:fastScrollAlwaysVisible="true"
     	android:fastScrollEnabled="true" />
         
-       
-
 </RelativeLayout>
